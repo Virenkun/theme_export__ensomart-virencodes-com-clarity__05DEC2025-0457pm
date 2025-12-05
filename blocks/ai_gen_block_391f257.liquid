@@ -1,0 +1,775 @@
+{% doc %}
+  @prompt
+    A return policy page
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-return-policy-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-return-policy-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.heading_alignment }};
+    margin-bottom: {{ block.settings.heading_spacing }}px;
+  }
+
+  .ai-return-policy-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.subtitle_spacing }}px;
+  }
+
+  .ai-return-policy-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+  }
+
+  .ai-return-policy-intro-{{ ai_gen_id }} {
+    font-size: {{ block.settings.intro_size }}px;
+    line-height: 1.6;
+    margin-bottom: {{ block.settings.section_spacing }}px;
+    text-align: {{ block.settings.intro_alignment }};
+  }
+
+  .ai-return-policy-sections-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.section_spacing }}px;
+  }
+
+  .ai-return-policy-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px;
+    background-color: {{ block.settings.section_background }};
+    border-radius: {{ block.settings.section_border_radius }}px;
+    border: {{ block.settings.section_border_width }}px solid {{ block.settings.section_border_color }};
+  }
+
+  .ai-return-policy-section-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.section_title_size }}px;
+    color: {{ block.settings.section_title_color }};
+    margin: 0 0 {{ block.settings.section_content_spacing }}px;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} {
+    font-size: {{ block.settings.content_size }}px;
+    line-height: 1.6;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} p {
+    margin: 0 0 12px;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} ul,
+  .ai-return-policy-section-content-{{ ai_gen_id }} ol {
+    margin: 0 0 12px;
+    padding-left: 24px;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} li {
+    margin-bottom: 8px;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} li:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-return-policy-section-content-{{ ai_gen_id }} strong {
+    color: {{ block.settings.section_title_color }};
+  }
+
+  .ai-return-policy-cta-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.section_spacing }}px;
+    text-align: {{ block.settings.cta_alignment }};
+  }
+
+  .ai-return-policy-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-return-policy-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-return-policy-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top | times: 0.7 }}px {{ block.settings.padding_horizontal | times: 0.7 }}px {{ block.settings.padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-return-policy-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+    }
+
+    .ai-return-policy-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.85 }}px;
+    }
+
+    .ai-return-policy-section-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.section_title_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-return-policy-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.show_header %}
+    <div class="ai-return-policy-header-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h1 class="ai-return-policy-title-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
+      {% endif %}
+      {% if block.settings.subtitle != blank %}
+        <div class="ai-return-policy-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if block.settings.intro_text != blank %}
+    <div class="ai-return-policy-intro-{{ ai_gen_id }}">
+      {{ block.settings.intro_text }}
+    </div>
+  {% endif %}
+
+  <div class="ai-return-policy-sections-{{ ai_gen_id }}">
+    {% if block.settings.show_section_1 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_1_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_1_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_1_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_1_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_section_2 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_2_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_2_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_2_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_2_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_section_3 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_3_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_3_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_3_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_3_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_section_4 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_4_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_4_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_4_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_4_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_section_5 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_5_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_5_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_5_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_5_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_section_6 %}
+      <div class="ai-return-policy-section-{{ ai_gen_id }}">
+        {% if block.settings.section_6_title != blank %}
+          <h2 class="ai-return-policy-section-title-{{ ai_gen_id }}">{{ block.settings.section_6_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_6_content != blank %}
+          <div class="ai-return-policy-section-content-{{ ai_gen_id }}">
+            {{ block.settings.section_6_content }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.show_cta %}
+    <div class="ai-return-policy-cta-{{ ai_gen_id }}">
+      <a href="{{ block.settings.cta_link }}" class="ai-return-policy-button-{{ ai_gen_id }}">
+        {{ block.settings.cta_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Return policy",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Return Policy"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We want you to be completely satisfied with your purchase"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "<p>Our return policy is designed to be simple and fair. Please read the following information carefully to understand your rights and responsibilities.</p>"
+    },
+    {
+      "type": "select",
+      "id": "intro_alignment",
+      "label": "Introduction alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Section 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_1",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_1_title",
+      "label": "Title",
+      "default": "Return Window"
+    },
+    {
+      "type": "richtext",
+      "id": "section_1_content",
+      "label": "Content",
+      "default": "<p>You have <strong>30 days</strong> from the date of delivery to return your item for a full refund or exchange. Items must be unused, in their original packaging, and in the same condition as received.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_2",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_2_title",
+      "label": "Title",
+      "default": "Eligible Items"
+    },
+    {
+      "type": "richtext",
+      "id": "section_2_content",
+      "label": "Content",
+      "default": "<p>Most items are eligible for return. However, the following items cannot be returned:</p><ul><li>Personalized or custom-made products</li><li>Perishable goods</li><li>Intimate or sanitary items</li><li>Digital products or downloadable software</li></ul>"
+    },
+    {
+      "type": "header",
+      "content": "Section 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_3",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_3_title",
+      "label": "Title",
+      "default": "Return Process"
+    },
+    {
+      "type": "richtext",
+      "id": "section_3_content",
+      "label": "Content",
+      "default": "<p>To initiate a return, please follow these steps:</p><ol><li>Contact our customer service team with your order number</li><li>Receive your return authorization and shipping label</li><li>Pack the item securely in its original packaging</li><li>Attach the shipping label and send the package</li></ol>"
+    },
+    {
+      "type": "header",
+      "content": "Section 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_4",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_4_title",
+      "label": "Title",
+      "default": "Refund Processing"
+    },
+    {
+      "type": "richtext",
+      "id": "section_4_content",
+      "label": "Content",
+      "default": "<p>Once we receive your return, we will inspect the item and process your refund within <strong>5-7 business days</strong>. Refunds will be issued to your original payment method. Please note that it may take additional time for your bank to process the refund.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_5",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_5_title",
+      "label": "Title",
+      "default": "Exchanges"
+    },
+    {
+      "type": "richtext",
+      "id": "section_5_content",
+      "label": "Content",
+      "default": "<p>If you need to exchange an item for a different size or color, please contact our customer service team. We will arrange for the exchange and provide you with a prepaid shipping label for the return.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_6",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_6_title",
+      "label": "Title",
+      "default": "Damaged or Defective Items"
+    },
+    {
+      "type": "richtext",
+      "id": "section_6_content",
+      "label": "Content",
+      "default": "<p>If you receive a damaged or defective item, please contact us immediately with photos of the damage. We will arrange for a replacement or full refund at no additional cost to you, including return shipping.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Contact Support"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "cta_alignment",
+      "label": "Button alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Header spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subtitle_spacing",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Subtitle spacing",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "section_spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Section spacing",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_content_spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Section content spacing",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Section style"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "section_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "section_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "intro_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Introduction size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "section_title_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Section title size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Content size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#170b02"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#5d2b09"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#f7f1ed"
+    },
+    {
+      "type": "color",
+      "id": "section_border_color",
+      "label": "Section border",
+      "default": "#e7d6ca"
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Section title",
+      "default": "#5d2b09"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#5d2b09"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#f7f1ed"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#98591b"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text",
+      "default": "#f7f1ed"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Return policy"
+    }
+  ]
+}
+{% endschema %}
