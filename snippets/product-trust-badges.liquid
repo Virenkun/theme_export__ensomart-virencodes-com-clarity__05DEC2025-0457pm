@@ -1,0 +1,224 @@
+{%- doc -%}
+  Premium Trust Badges Component
+  Displays trust indicators to boost customer confidence
+  
+  @param {string} [layout] - 'row' or 'column' (default: 'row')
+  @param {boolean} [show_icons] - Show icons (default: true)
+  @param {string} [size] - 'small', 'medium', 'large' (default: 'medium')
+{%- enddoc -%}
+
+{% liquid
+  assign layout = layout | default: 'row'
+  assign show_icons = show_icons | default: true
+  assign size = size | default: 'medium'
+%}
+
+<div class="trust-badges-premium trust-badges--{{ layout }} trust-badges--{{ size }}">
+  <div class="trust-badge-item">
+    {% if show_icons %}
+      <div class="trust-badge-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      </div>
+    {% endif %}
+    <div class="trust-badge-content">
+      <span class="trust-badge-title">Free Shipping</span>
+      <span class="trust-badge-desc">On orders $50+</span>
+    </div>
+  </div>
+  
+  <div class="trust-badge-item">
+    {% if show_icons %}
+      <div class="trust-badge-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+      </div>
+    {% endif %}
+    <div class="trust-badge-content">
+      <span class="trust-badge-title">30-Day Returns</span>
+      <span class="trust-badge-desc">Hassle-free</span>
+    </div>
+  </div>
+  
+  <div class="trust-badge-item">
+    {% if show_icons %}
+      <div class="trust-badge-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+    {% endif %}
+    <div class="trust-badge-content">
+      <span class="trust-badge-title">Secure Checkout</span>
+      <span class="trust-badge-desc">SSL encrypted</span>
+    </div>
+  </div>
+  
+  <div class="trust-badge-item">
+    {% if show_icons %}
+      <div class="trust-badge-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12l2 2 4-4"></path>
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+      </div>
+    {% endif %}
+    <div class="trust-badge-content">
+      <span class="trust-badge-title">Quality Guarantee</span>
+      <span class="trust-badge-desc">100% authentic</span>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .trust-badges-premium {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(249, 249, 249, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .trust-badges--row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .trust-badges--column {
+    flex-direction: column;
+  }
+  
+  .trust-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: fit-content;
+  }
+  
+  .trust-badges--column .trust-badge-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .trust-badges--column .trust-badge-item:last-child {
+    border-bottom: none;
+  }
+  
+  .trust-badge-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+  }
+  
+  .trust-badge-icon svg {
+    width: 20px;
+    height: 20px;
+    color: #c9a050;
+  }
+  
+  .trust-badge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  
+  .trust-badge-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-foreground);
+    line-height: 1.2;
+  }
+  
+  .trust-badge-desc {
+    font-size: 0.75rem;
+    color: var(--color-foreground);
+    opacity: 0.6;
+    line-height: 1.2;
+  }
+  
+  /* Size variations */
+  .trust-badges--small .trust-badge-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .trust-badges--small .trust-badge-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .trust-badges--small .trust-badge-title {
+    font-size: 0.75rem;
+  }
+  
+  .trust-badges--small .trust-badge-desc {
+    font-size: 0.65rem;
+  }
+  
+  .trust-badges--large .trust-badge-icon {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .trust-badges--large .trust-badge-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .trust-badges--large .trust-badge-title {
+    font-size: 1rem;
+  }
+  
+  .trust-badges--large .trust-badge-desc {
+    font-size: 0.85rem;
+  }
+  
+  /* Mobile responsive */
+  @media screen and (max-width: 749px) {
+    .trust-badges--row {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .trust-badges--row .trust-badge-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .trust-badges--row .trust-badge-item:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  /* Hover animation */
+  .trust-badge-item {
+    transition: transform 0.2s ease;
+  }
+  
+  .trust-badge-item:hover {
+    transform: translateX(4px);
+  }
+  
+  .trust-badges--column .trust-badge-item:hover,
+  @media screen and (max-width: 749px) {
+    .trust-badges--row .trust-badge-item:hover {
+      transform: translateX(4px);
+    }
+  }
+{% endstylesheet %}
+
